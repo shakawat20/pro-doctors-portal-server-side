@@ -38,7 +38,7 @@ function verifyJWT(req, res, next) {
 
 async function run() {
     try {
-       client.connect();
+        client.connect();
         const serviceCollections = client.db('doctors-portal').collection("services");
         const bookingCollections = client.db('doctors-portal').collection("booking");
         const userCollections = client.db('doctors-portal').collection('users');
@@ -212,7 +212,7 @@ async function run() {
             const payment = req.body;
             const result = await paymentCollections.insertOne(payment);
             const  id=payment.bookingId
-            const filter ={_id:ObjectId(id)}
+            const filter ={_id:new ObjectId(id)}
             const updatedDoc={
                 $set:{
                     paid: true,
